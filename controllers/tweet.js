@@ -6,7 +6,7 @@ async function postTweet(req, res){
     
     try{
         const tweet = new Tweet({
-            text : req.params.text,
+            text : req.query.txt,
             user : req.user._id,
             category : req.category._id
         })

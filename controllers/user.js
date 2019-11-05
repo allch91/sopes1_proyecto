@@ -2,18 +2,19 @@
 
 const User = require('../models/user')
 
-async function getUser(req, res){
-    console.log(req.params.alias)
-    console.log(req.params.name)
-    var user = await Category.findOne({category: text})
+async function getUser(req, res, next){
+    
+    console.log('usr: ' + req.query.usr)
+    console.log('nom: ' + req.query.nom)
+    var user = await User.findOne({alias: req.query.usr})
     if(!user){
         user = new User({
-            alias: req.params.alias,
-            name: req.params.name
+            alias: req.query.usr,
+            name: req.query.nom
         })
         await user.save()
     }
-    console.log(user)
+    console.log('usuario: '+user)
     req.user = user
     next()
 }

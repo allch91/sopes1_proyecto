@@ -4,13 +4,14 @@ const Category = require('../models/category')
 const Parser = require('simple-text-parser')
 var parser = new Parser()
 
-parser.addRule(/\[\S]+/ig, function(tag){
-    return Range.substr(1)
+parser.addRule(/\#[\S]+/ig, function(tag){
+    return tag.substr(1)
 })
 
-async function getCategory(req, res){
-    var text = parser.render(req.params.txt)
-    console.log(text)
+async function getCategory(req, res, next){
+    console.log('txt: ' + req.query.txt)
+    var text = 'algo'
+    console.log('categoria: ' + parser.toTree(req.query.txt)[1].text)
     var cat = await Category.findOne({category: text})
     
     if(!cat){
@@ -19,7 +20,7 @@ async function getCategory(req, res){
         })
         await cat.save()
     }
-    console.log(cat)
+    console.log('category: '+cat)
     req.category = cat
     next()
 }

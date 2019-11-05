@@ -1,2 +1,15 @@
-# sopes1_proyecto
-Proyecto Sistemas Operativos 1 Segundo Semestre 2019
+# Servidor web
+Servidor web para la simulación de peticiones.
+
+## Prerrequisitos
+- Node.js
+- MongoDB
+
+## Instalación
+* npm install
+
+## Ejecución
+* npm start
+
+## Pruebas
+* Postman
