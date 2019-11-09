@@ -6,6 +6,7 @@ const config = require('./config')
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
+mongoose.set('useCreateIndex', true);
 
 mongoose.connect(config.db, (err,res)=>{
     if(err) {

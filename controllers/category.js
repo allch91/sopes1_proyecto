@@ -10,8 +10,8 @@ parser.addRule(/\#[\S]+/ig, function(tag){
 
 async function getCategory(req, res, next){
     console.log('txt: ' + req.query.txt)
-    var text = 'algo'
-    console.log('categoria: ' + parser.toTree(req.query.txt)[1].text)
+    var text = parser.toTree(req.query.txt)[1].text
+    console.log('categoria: ' + text)
     var cat = await Category.findOne({category: text})
     
     if(!cat){

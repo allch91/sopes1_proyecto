@@ -18,4 +18,18 @@ async function postTweet(req, res){
     }
 }
 
-module.exports = postTweet
+async function topTen(req, res){
+    try{
+        var tweets = await Tweet.find().populate('user')
+        .populate('category').sort({_id: -1}).limit(10)
+        return res.status(200).send({tweets})
+    }
+    catch(e){
+        return res.status(500).send({error: e})
+    }
+}
+
+module.exports = {
+    postTweet,
+    topTen
+}
